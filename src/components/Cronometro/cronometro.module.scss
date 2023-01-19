@@ -1,0 +1,79 @@
+.cronometro {
+    grid-area: cronometro;
+  
+    .relogio_wrapper {
+      align-items: center;
+      background-color: #232d3a;
+      border-radius: 5px;
+      box-shadow: 2px 4px 4px #0000009F;
+      box-sizing: border-box;
+      display: flex;
+      font-size: 5rem;
+      // justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      padding: 16px 12px;
+      width: 100%;
+      border-left: solid 10px #88bcd1;
+    }
+    
+    div{
+      width: 100%;
+      display: flex;
+      // align-items: center;
+      // justify-content: center;
+    }
+
+    button{
+      // margin-top: 0;
+      margin-left: 15px;
+    }
+
+    .number {
+        background-color: #45567a;
+        box-shadow: 2px 2px 4px #2B2B2B inset;
+        // height: 3.6rem;
+        width: 3rem;
+        padding: 8px 4px;
+        border-radius: 10px;
+        margin-left: 15px;
+        line-height: .85em;
+        display: inline-block;
+        text-align: center;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
+        color: #fff;
+
+        &:nth-of-type(4){
+            margin-left: 0;
+        }
+      
+        @media screen and (min-width:1280px) {
+          height: 6.3rem;
+          width: 5rem;
+        }
+      }
+      
+      .division {
+        // height: 4.2rem;
+        color: #fff;
+        line-height: .85em;
+        margin: 0;
+      
+        @media screen and (min-width:1280px) {
+          // height: 12.6rem;
+        }
+      }
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      margin-top: 25px;
+      text-transform: none;
+    }
+  
+    @media screen and (min-width:1280px) {
+      .relogio_wrapper{
+        font-size: 10rem;
+      }
+    }
+  }
