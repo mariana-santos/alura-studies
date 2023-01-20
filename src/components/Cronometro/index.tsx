@@ -11,9 +11,8 @@ export function Cronometro(){
                 <div>
                     <Relogio/>
                 </div>
-                <Button>Start</Button>
+                <Button type="button">Start</Button>
             </div>
-
         </div>
     )
 }
