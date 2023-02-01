@@ -7,9 +7,10 @@ import { tempoParaSeg } from '../../common/utils/time'
 
 interface Props{
     selecionado: ITarefa | undefined
+    finalizarTarefa: () => void
 }
 
-export function Cronometro({selecionado} : Props){
+export function Cronometro({selecionado, finalizarTarefa} : Props){
     const [tempo, setTempo] = useState<number>()
 
     //hook padrão do react que é acionado sempre que algo muda (nesse caso a var selecionado, 
@@ -26,6 +27,7 @@ export function Cronometro({selecionado} : Props){
                 setTempo(contador - 1)
                 return regressiva(contador - 1)
             }
+            finalizarTarefa()
         }, 1000)
     }
 
