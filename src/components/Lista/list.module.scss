@@ -71,7 +71,8 @@ span {
   }
   
   .done_item {
-    background-color: #566F42;
+    background-color: #333;
+    opacity: .5;
     cursor: auto;
   
     .done {
@@ -86,4 +87,9 @@ span {
       width: 42px;
       height: 43px;
     }
+
+    &:hover{
+      opacity: .5;
+    }
+
   }

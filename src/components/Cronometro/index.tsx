@@ -11,7 +11,8 @@ interface Props{
 }
 
 export function Cronometro({selecionado, finalizarTarefa} : Props){
-    const [tempo, setTempo] = useState<number>()
+    const [tempo, setTempo] = useState<number>(0)
+    const [isPaused, setPaused] = useState<boolean>(true)
 
     //hook padrão do react que é acionado sempre que algo muda (nesse caso a var selecionado, 
     //que ta no array de dependencias do useEffect)
@@ -21,13 +22,24 @@ export function Cronometro({selecionado, finalizarTarefa} : Props){
 
     }, [selecionado])
 
+    useEffect(() => {
+
+        console.log(isPaused)
+        if (!isPaused) regressiva(tempo)
+
+    }, [isPaused])
+
     function regressiva(contador: number = 0){
-        setTimeout(()=>{
-            if(contador > 0) {
+        console.log(contador)
+
+        setTimeout(() => {
+            if(contador > 0 ) {
                 setTempo(contador - 1)
-                return regressiva(contador - 1)
+                regressiva(contador - 1)
             }
-            finalizarTarefa()
+            
+            else finalizarTarefa()
+            
         }, 1000)
     }
 
@@ -39,7 +51,14 @@ export function Cronometro({selecionado, finalizarTarefa} : Props){
                 <div>
                     <Relogio tempo={tempo} />
                 </div>
-                <Button type="button" onClick={() => regressiva(tempo)}>Start</Button>
+                <Button type="button" onClick={() => setPaused(false)}>Start</Button>
+                <Button type="button" onClick={() => setPaused(isPaused ? false : true)}>{isPaused ? 'Unpause' : 'Pause'}</Button>
+                <Button type="button" onClick={() => {
+                    finalizarTarefa()
+                    setTempo(0)
+                    if(selecionado) selecionado.tempo = '00:00:00'
+                    setPaused(true)
+                }}>Done</Button>
             </div>
         </div>
     )
