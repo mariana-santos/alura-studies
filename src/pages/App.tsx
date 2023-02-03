@@ -21,6 +21,18 @@ function App() {
       )))
   }
 
+  function delete_tarefa(id: string){
+    if(selecionado) {
+      setTarefas(tarefasAnteriores =>
+      tarefasAnteriores.filter(tarefa => {
+          return (tarefa.id !== id)
+      }))
+    }
+
+    setSelecionado(undefined)
+    
+  }
+
   function finaliza_tarefa() {
     if(selecionado) {
         setTarefas(tarefasAnteriores =>
@@ -47,6 +59,7 @@ function App() {
       <Cronometro 
         selecionado={selecionado}
         finalizarTarefa={finaliza_tarefa}
+        deletarTarefa={delete_tarefa}
       />
     </div>
   );
