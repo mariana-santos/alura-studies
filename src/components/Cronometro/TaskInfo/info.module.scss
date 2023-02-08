@@ -7,7 +7,18 @@
     h3{
         font-size: 2rem;
         margin-bottom: 20px;
-        text-align: center;     
+        text-align: center;
+        
+        &::after{
+            content: '';
+            height: 3px;
+            border-radius: 5px;
+            width: 30%;
+            display: block;
+            background: #7CA6B7;
+            margin: auto;
+            margin-top: 10px;
+        }
     }
 
     label, span{

@@ -22,7 +22,7 @@ export default function Task_Info({ selecionado } : Props){
                 </div>
             </>
             : 
-            <p> No task selected yet. Please select one aside and then start the timer</p>
+            <p> No task selected yet. Please select one from your "to-do list" and then start the timer</p>
             }
             
         </div>

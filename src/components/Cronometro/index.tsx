@@ -14,7 +14,8 @@ interface Props{
 
 export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props){
     const [tempo, setTempo] = useState<number>(0)
-    const [isPaused, setPaused] = useState<boolean>(true)
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [isRunning, setIsRunning] = useState<boolean>(false)
 
     //hook padrão do react que é acionado sempre que algo muda (nesse caso a var selecionado, 
     //que ta no array de dependencias do useEffect)
@@ -26,30 +27,36 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
 
     useEffect(() => {
 
-        // console.log(isPaused)
+        let intervalId: any = null;
 
-        // if (!isPaused) {
-        //     // while(tempo > 0){
-        //         setTempo(tempo - 1)
-        //         console.log(tempo)
-        //     // }
-        // }
+        if (isRunning) {
+          intervalId = setInterval(() => {
+            setTimeLeft(timeLeft - 1);
+          }, 1000);
 
-    }, [isPaused, tempo])
+          if(timeLeft === 0) {
+            finalizarTarefa()
+            setIsRunning(false)
+          }
 
-    function regressiva(contador: number = 0){
-        // console.log(contador)
+        } 
+        
+        else if (!isRunning && timeLeft !== 0) {
+          clearInterval(intervalId);
+        }
 
-        setTimeout(() => {
-            if(contador > 0 ) {
-                setTempo(contador - 1)
-                regressiva(contador - 1)
-            }
-            
-            else finalizarTarefa()
-            
-        }, 1000)
-    }
+        return () => clearInterval(intervalId);
+      }, [isRunning, timeLeft]);
+
+
+    const handleStart = () => {
+        setIsRunning(true);
+        setTimeLeft(tempo);
+    };
+
+    const handlePause = () => {
+        setIsRunning(isRunning ? false : true)
+    };
 
     return(
         <div className={style.cronometro}>
@@ -58,38 +65,46 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
             <div className={style.relogio_wrapper}>
                 <div>
                     <Task_Info selecionado={selecionado} />
-                    <Relogio tempo={tempo} />
+                    <Relogio tempo={timeLeft} />
                 </div>
 
                 <div>
                     <Button 
                         disabled={selecionado ? false : true} 
                         type="button" 
-                        onClick={() => regressiva(tempo)}>
+                        hasIcon
+                        iconName="start"
+                        onClick={handleStart}>
                         Start
                     </Button>
 
                     <Button
                         disabled={selecionado ? false : true} 
                         type="button" 
-                        onClick={() => setPaused(isPaused ? false : true)}>
-                            {isPaused ? 'Unpause' : 'Pause'}
+                        hasIcon
+                        iconName={ isRunning ? 'pause' : 'play' }
+                        onClick={handlePause}>
+                            { isRunning ? 'PAUSE' : 'UNPAUSE' }
                     </Button>
 
                     <Button 
                         type="button"
+                        hasIcon
+                        iconName="done"
                         disabled={selecionado ? false : true} 
+                        
                         onClick={() => {
                             finalizarTarefa()
-                            setTempo(0)
-                            if(selecionado) selecionado.tempo = '00:00:00'
-                            setPaused(true)
+                            setTimeLeft(0)
+                            setIsRunning(false)
                     }}>
                         Done
                     </Button>
 
                     <Button 
                         type="button" 
+                        hasIcon
+                        iconName="delete"
                         disabled={selecionado ? false : true} 
                         onClick={() => { selecionado && deletarTarefa(selecionado.id) }}>
                         Delete
