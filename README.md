@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Preview:
 
-![Preview Image](https://github.com/mariana-santos/alura-studies/tree/main/src/assets/img/alura-studies.png?raw=true)
+![Preview Image](https://github.com/mariana-santos/alura-studies/blob/main/src/assets/img/alura%20studies.png)
 
 ## Test the app:
 
