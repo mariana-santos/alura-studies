@@ -30,7 +30,7 @@ function Lista({tarefas, selecionaTarefa}: Props){
 
     return(
         <aside className={style.tasks}>
-            <h2>to-do list</h2>
+            <h2><span className={style.todo}/> to-do list  </h2> 
             <span>These are your tasks for today. Select one and start studying!</span>
 
             <span>Filter by: </span>

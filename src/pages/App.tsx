@@ -28,9 +28,7 @@ function App() {
           return (tarefa.id !== id)
       }))
     }
-
     setSelecionado(undefined)
-    
   }
 
   function finaliza_tarefa() {
@@ -46,6 +44,7 @@ function App() {
             }
             return tarefa;
         }))
+      setSelecionado(undefined)
     }
   }
 

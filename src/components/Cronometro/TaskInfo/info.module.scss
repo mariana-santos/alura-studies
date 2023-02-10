@@ -1,8 +1,13 @@
 .task_info{
-    width: 45% !important;
+    width: 35% !important;
     flex-direction: column;
     margin-left: 15px;
     justify-content: center !important;
+    margin-bottom: 0 !important;
+
+    @media screen and (max-width: 730px) {
+        margin-right: 15px;
+    }
 
     h3{
         font-size: 2rem;
@@ -13,7 +18,7 @@
             content: '';
             height: 3px;
             border-radius: 5px;
-            width: 30%;
+            width: 60px;
             display: block;
             background: #7CA6B7;
             margin: auto;
@@ -41,5 +46,6 @@
     div{
         justify-content: flex-start;
         gap: 5px;
+        margin-bottom: 0 !important;
     }
 }

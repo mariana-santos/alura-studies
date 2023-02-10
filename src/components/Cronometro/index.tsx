@@ -16,6 +16,7 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
     const [tempo, setTempo] = useState<number>(0)
     const [timeLeft, setTimeLeft] = useState(0);
     const [isRunning, setIsRunning] = useState<boolean>(false)
+    const [started, setStarted] = useState<boolean> (false)
 
     //hook padrão do react que é acionado sempre que algo muda (nesse caso a var selecionado, 
     //que ta no array de dependencias do useEffect)
@@ -37,6 +38,7 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
           if(timeLeft === 0) {
             finalizarTarefa()
             setIsRunning(false)
+            setStarted(false)
           }
 
         } 
@@ -51,11 +53,18 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
 
     const handleStart = () => {
         setIsRunning(true);
+        setStarted(true)
         setTimeLeft(tempo);
     };
 
     const handlePause = () => {
         setIsRunning(isRunning ? false : true)
+    };
+
+    const handleStop = () => {
+        setIsRunning(false)
+        setTimeLeft(0)
+        setStarted(false)
     };
 
     return(
@@ -68,23 +77,23 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
                     <Relogio tempo={timeLeft} />
                 </div>
 
-                <div>
+                <div className={style.wrap_btn}>
                     <Button 
-                        disabled={selecionado ? false : true} 
+                        disabled={ selecionado ? false : true } 
                         type="button" 
                         hasIcon
                         iconName="start"
                         onClick={handleStart}>
-                        Start
+                        { started ? 'Restart' : 'Start' }
                     </Button>
 
                     <Button
-                        disabled={selecionado ? false : true} 
+                        disabled={selecionado && started ? false : true} 
                         type="button" 
                         hasIcon
-                        iconName={ isRunning ? 'pause' : 'play' }
+                        iconName={ !selecionado || isRunning || !started ? 'pause' : 'play' }
                         onClick={handlePause}>
-                            { isRunning ? 'PAUSE' : 'UNPAUSE' }
+                            { !selecionado || isRunning || !started ? 'PAUSE' : 'UNPAUSE' }
                     </Button>
 
                     <Button 
@@ -95,8 +104,7 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
                         
                         onClick={() => {
                             finalizarTarefa()
-                            setTimeLeft(0)
-                            setIsRunning(false)
+                            handleStop()
                     }}>
                         Done
                     </Button>
@@ -106,7 +114,7 @@ export function Cronometro({selecionado, finalizarTarefa, deletarTarefa} : Props
                         hasIcon
                         iconName="delete"
                         disabled={selecionado ? false : true} 
-                        onClick={() => { selecionado && deletarTarefa(selecionado.id) }}>
+                        onClick={() => { selecionado && deletarTarefa(selecionado.id); handleStop(); }}>
                         Delete
                     </Button>
                 </div>

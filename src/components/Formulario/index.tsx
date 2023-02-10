@@ -40,8 +40,9 @@ class Formulario extends React.Component<{
                         id='tarefa'
                         value={this.state.tarefa}
                         onChange={(e) => this.setState({...this.state, tarefa: e.target.value})}
-                        placeholder='What would you like to study?'
+                        placeholder='Task name'
                         required
+                        autoComplete='off'
                     />
                 </div>
 
@@ -60,7 +61,12 @@ class Formulario extends React.Component<{
                     />
                 </div>
 
-                <Botao type="submit">Add</Botao>
+                <Botao 
+                    type="submit"
+                    disabled={ this.state.tarefa === '' || this.state.tempo === '00:00:00' ? true : false}
+                >
+                    Add
+                </Botao>
             </form>
         )
     }

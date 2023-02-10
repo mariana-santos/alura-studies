@@ -14,52 +14,116 @@
       padding: 16px 12px;
       width: 100%;
       border-left: solid 10px #88bcd1;
+
+
+      div{
+        @media screen and (max-width:730px) {
+          width: 100% !important;
+          justify-content: center;
+        }
+      }
+
+      div:first-of-type{
+        @media screen and (max-width:1280px) {
+          margin-bottom: 2rem;
+        }
+        @media screen and (max-width:500px) {
+          gap: 10px
+        }
+      }
+
+      div:nth-child(2){
+        @media screen and (max-width:1280px) {
+          // width: 30%;
+          // gap: 15px;
+        }
+      }
+
     }
     
     div{
       width: 100%;
       display: flex;
       justify-content: space-between;
+
+      @media screen and (max-width:1280px) {
+        flex-wrap: wrap;
+      }
+
+      &:first-of-type{
+        margin-bottom: 1rem;
+      }
     }
 
-    button:not(:first-of-type){
-      margin-left: 30px;
+    .wrap_btn{
+      @media screen and (max-width:1280px) {
+        gap: 20px;
+      }
     }
 
-    button:first-of-type{
-      margin-left: 15px;
-    }
+    button{
+      &:not(:first-of-type){
+        margin-left: 30px;
+      }
 
-    button:last-of-type{
-      margin-right: 15px;
+      &:first-of-type{
+        margin-left: 15px;
+      }
+
+      &:last-of-type{
+        margin-right: 15px;
+      }
+
+      @media screen and (max-width:1280px) {
+        margin: 0 !important;
+      }
+
+      @media screen and (max-width:800px) {
+        width: calc(50% - 20px);
+      }
+
+      @media screen and (max-width:500px) {
+        width: calc(100% - 30px);
+      }
     }
 
     .relogio {
       justify-content: end;
       margin-right: 15px;
+      width: 60% !important;
     } 
 
     .number {
         background-color: #45567a;
         box-shadow: 2px 2px 4px #2B2B2B inset;
-        // height: 3.6rem;
-        width: 3rem;
-        padding: 8px 4px;
+        font-size: 6.5rem;
         border-radius: 10px;
-        margin-left: 15px;
+        margin-left: 5px;
         line-height: .85em;
-        display: inline-block;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-family: 'Sofia Sans Semi Condensed', sans-serif;
         color: #fff;
+        margin-bottom: 0px !important;
+        padding: 10px 15px 0 15px;
 
         &:nth-of-type(4){
             margin-left: 0;
         }
-      
-        @media screen and (min-width:1280px) {
-          height: 6.3rem;
-          width: 5rem;
+
+        @media screen and (max-width: 1280px) {
+          margin-bottom: 0 !important;
+        }
+
+        @media screen and (max-width: 800px) {
+          font-size: 5rem;
+        }
+
+        @media screen and (max-width: 500px) {
+          font-size: 3rem;
+          padding: 10px 7px 7px 10px;
         }
       }
       
@@ -68,9 +132,14 @@
         color: #fff;
         line-height: .85em;
         margin: 0;
+        font-size: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       
-        @media screen and (min-width:1280px) {
-          // height: 12.6rem;
+        @media screen and (max-width: 500px) {
+          font-size: 3rem;
+          padding: 10px 7px 7px 10px;
         }
       }
   

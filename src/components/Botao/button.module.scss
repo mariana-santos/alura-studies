@@ -42,6 +42,17 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
+
+      @media screen and (max-width: 500px) {
+        width: 17px;
+        height: 17px;
+      }
+
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      padding: 7px;
     }
   }
   
