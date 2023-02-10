@@ -1,4 +1,4 @@
-# TO-DO list project bulit with React, SASS and Typescipt.
+# TO-DO list project built with React, SASS and Typescipt.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
