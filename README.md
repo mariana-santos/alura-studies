@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Test the app:
 
+[Click here to test! :)](https://alura-studies-mariana-santos.vercel.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
